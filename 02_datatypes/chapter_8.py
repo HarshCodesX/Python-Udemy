@@ -24,3 +24,16 @@ print(f"Chai ingredients after reversing: {chai_ingredients}")
 sugar_levels = [1, 2, 3, 4, 5]
 print(f"Sugar max level: {max(sugar_levels)}")
 print(f"Sugar min level: {min(sugar_levels)}")
+
+base_liquid = ["water", "milk"]
+extra_flavors = ["ginger"]
+
+full_liquid_mix = base_liquid + extra_flavors
+print(f"Full liquid mix: {full_liquid_mix}")
+
+strong_brew = ["black tea", "water"] * 3
+print(f"Strong brew: {strong_brew}")
+
+raw_spice_data = bytearray(b"cinnamon")
+raw_spice_data = raw_spice_data.replace(b"cinnamon", b"cardamom")
+print(f"Raw spice data after replacement: {raw_spice_data}")
