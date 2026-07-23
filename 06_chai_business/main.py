@@ -5,6 +5,3 @@
 
 # from recipes.flavors import cardamom_chai, ginger_chai
 # print(cardamom_chai())
-
-# Another example
-
