@@ -15,9 +15,9 @@ class GingerTea(BaseTea):
 # spcl_tea.add_spices()
 
 class TeaShop:
-    tea_class = BaseTea
+    tea_cls = BaseTea
     def __init__(self):
-        self.tea = self.tea_class("Regular")
+        self.tea = self.tea_cls("Regular")
 
     def serve(self):
         print(f"Serving {self.tea.type} tea")
@@ -25,4 +25,10 @@ class TeaShop:
 
 class FancyTeaShop(TeaShop):
     tea_cls = GingerTea
-    
+
+shop = TeaShop()
+fancy = FancyTeaShop()
+
+shop.serve()
+fancy.serve()
+fancy.tea.add_spices()
