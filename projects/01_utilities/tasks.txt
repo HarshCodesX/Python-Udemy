@@ -1,0 +1,3 @@
+python learning || done
+hit the gym || not_done
+file handling in python || not_done
