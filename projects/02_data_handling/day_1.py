@@ -73,7 +73,12 @@ def search_contact():
     found = False
     with open(FILENAME, 'r', encoding="utf-8") as f:
         reader = csv.DictReader(f)
-
+        for row in reader:
+            if term in row["Name"].lower:
+                print(f"{row["Name"]} | {row["Phone"]} | {row["Email"]}")
+                found = True
+    if not found:
+        print("No matching contact found")
        
 
    
