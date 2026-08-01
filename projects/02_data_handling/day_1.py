@@ -47,24 +47,25 @@ def add_contact():
    with open(FILENAME, 'r', encoding="utf-8") as f:
       reader = csv.DictReader(f)
       for row in reader:
-          if row["name"].lower() == name.lower():
+          if row["Name"].lower() == name.lower():
               print("Contact name already exists")
               return
    
-   with open(FILENAME, 'a', encoding="utf-8") as f:
+   with open(FILENAME, 'a',newline="", encoding="utf-8") as f:
        writer = csv.writer(f)
        writer.writerow([name, phone, email])
        print("Contact added")
 
 def view_contacts():
-    with open(FILENAME, 'r', encoding="utf-8") as f:
+    with open(FILENAME, 'r',newline="", encoding="utf-8") as f:
         reader = csv.reader(f)
         rows = list(reader)
-        if len(rows) < 1:
+        if len(rows) <= 1:
             print("no contacts found")
             return
         print("\nYour contacts: \n")
         for row in rows[1:]: #to start from second row as rows[0] is the heading - name, phone, email
+            # print(row)
             print(f"{row[0]} | {row[1]} | {row[2]}")
         print()
 
@@ -74,12 +75,35 @@ def search_contact():
     with open(FILENAME, 'r', encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
-            if term in row["Name"].lower:
+            if term in row["Name"].lower():
                 print(f"{row["Name"]} | {row["Phone"]} | {row["Email"]}")
                 found = True
     if not found:
         print("No matching contact found")
-       
+
+def main():
+    while True:
+        print("Contact Book")
+        print("1. Add Contact")
+        print("2. View All Contacts")
+        print("3. Search Contact")
+        print("4. Exit")
+
+        choice = input("Choose the operation you want to perform").strip()
+        if choice == "1":
+            add_contact()
+        elif choice == "2":
+            view_contacts()
+        elif choice == "3":
+            search_contact()
+        elif choice == "4":
+            print("thanks for using our software")
+            break
+        else:
+            print("Invalid choice")
+
+if __name__ == "__main__":
+    main()
 
    
 
