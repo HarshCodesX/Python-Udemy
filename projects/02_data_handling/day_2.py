@@ -16,3 +16,22 @@ Bonus:
 - Format output clearly in a report-style layout
 - Prevent duplicate student names
 """
+
+def collect_student_data():
+    students = {}
+    while True:
+        name = input("Enter the student name: ").strip()
+
+        if name.lower() == "done":
+            break
+        if name in students:
+            print("Student already exists")
+            continue
+
+        try:
+            marks = float(input(f"Enter marks for {name}: "))
+            students[name] = marks
+        except ValueError:
+            print("Please enter a valid number for marks")
+            
+    return students
