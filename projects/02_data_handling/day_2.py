@@ -35,3 +35,32 @@ def collect_student_data():
             print("Please enter a valid number for marks")
             
     return students
+
+def display_report(students):
+    if not students:
+        print("No student data!")
+        return
+    marks = list(students.values())
+    max_score = max(marks)
+    min_score = min(marks)
+    average = sum(marks) / len(marks)
+
+    topper = [name for name, score in students.items() if score == max_score]
+    bottom = [name for name, score in students.items() if score == min_score]
+
+    print("\nStudents marks report")
+
+    print("-" * 30)
+
+    print(f"Total number of students: {len(students)}")
+    print(f"Average marks of students: {average:.2f}")
+    print(f"Highest marks among students: {max_score} and scored by {topper}")
+    print(f"Lowest marks among students: {min_score} and scored by {bottom}")
+
+    print("-" * 30)
+    print("Detailed marks")
+    for name, score in students.items():
+        print(f"{name} - {score}")
+
+data = collect_student_data()
+display_report(data)
