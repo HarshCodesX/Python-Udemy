@@ -64,16 +64,24 @@ def log_weather():
 def logger():
     with open(FILENAME, 'r', newline="", encoding="utf-8") as f:
         reader = list(csv.reader(f))
+        if len(reader) <= 1:
+            print("No Entries")
+            return
+        for row in reader[1:]:
+            print(f"{row[0]} - {row[1]} - {row[2]} - {row[3]}")
 
 def main():
     while True:
         print("Real time weather logger")
         print("1. Add weather log")
+        print("2. Log weather file")
 
         choice = input("Choose an option: ").strip()
         match choice:
             case "1":
                 log_weather()
+            case "2":
+                logger()
             case _:
                 print("Invalid choice")
 
