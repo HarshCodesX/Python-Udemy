@@ -21,3 +21,61 @@ Bonus:
 - Format the output like a table
 - Handle API failures and invalid city names gracefully
 """
+
+import os
+import csv
+from datetime import datetime
+import requests
+
+FILENAME = "weather_logs.csv"
+API_KEY = "486fd2210077e2440127e378bd2ef253"
+
+if not os.path.exists(FILENAME):
+    with open(FILENAME, 'w',newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+        writer.writerow(["Date", "City", "Temperature", "condition"])
+
+def log_weather():
+    city = input("Enter city name: ").strip()
+    date = datetime.now().strftime("%Y-%m-%d")
+    with open(FILENAME, 'r', newline="", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            if row["Date"] == date and row["City"].lower() == city.lower():
+                print("Entry for this city and date exists")
+                return
+    try:
+        url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}"
+        response = requests.get(url)
+        data = response.json()
+        if response.status_code != 200:
+            print("Api error")
+            return
+        temp = data['main']['temp']
+        condition = data['weather'][0]['main']
+        with open(FILENAME, 'a', newline="", encoding="utf-8") as f:
+            writer = csv.writer(f)
+            writer.writerow([date, city.title(), temp, condition])
+            print(f"Logged: {temp} {condition} in {city.title()} on {date}")
+    except Exception as e:
+        print("Failed to make api call")
+
+
+def logger():
+    with open(FILENAME, 'r', newline="", encoding="utf-8") as f:
+        reader = list(csv.reader(f))
+
+def main():
+    while True:
+        print("Real time weather logger")
+        print("1. Add weather log")
+
+        choice = input("Choose an option: ").strip()
+        match choice:
+            case "1":
+                log_weather()
+            case _:
+                print("Invalid choice")
+
+if __name__ == "__main__":
+    main()
