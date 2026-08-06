@@ -31,4 +31,12 @@ def preview_data(data, count=3):
         print(json.dumps(row, indent=2))
         print(".............")
 
+def main():
+    data = load_csv_data(INPUT_FILE)
+    if not data:
+        return
+    save_as_json(data, OUTPUT_FILE)
+    preview_data(data)
 
+if __name__ == "__main__":
+    main()
