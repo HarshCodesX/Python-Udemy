@@ -45,7 +45,7 @@ def add_credentials():
     encodeed_line = encode(line)
 
     with open(VAULT_FILE, 'a', encoding="utf-8") as f:
-        f.write(encodeed_line)
+        f.write(encodeed_line + "\n")
 
     print("Credentials added!")
 
@@ -57,7 +57,7 @@ def view_credentials():
     with open(VAULT_FILE, 'r', encoding="utf-8") as f:
         for line in f:
             decoded = decode(line.strip())
-            print(decoded)
+            # print(decoded)
             website, username, password = decoded.split('||')
             hidden_password = '*' * len(password)
             print(f"{website} | {username} | {password}")
