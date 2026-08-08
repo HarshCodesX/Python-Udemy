@@ -55,9 +55,53 @@ def add_note():
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     data = load_vault()
     data.append({
-        "titile": title,
+        "title": title,
         "content": encryptedContent,
         "timestamp": timestamp
     })
     save_vault(data)
     print("Data Saved!")
+
+def list_notes():
+    data = load_vault()
+    # print(data)
+    if not data:
+        print("No notes yet")
+        return
+    else:
+        for i, note in enumerate(data, 1):
+            print(f"{i}. {note['title']} {note['timestamp']}")
+
+def view_note():
+    list_notes()
+    try:
+        index = int(input("Enter note number to view: ")) - 1
+        data = load_vault()
+        if 0 <= index <len(data):
+            encrypted = data[index]["content"]
+            decrypted = fernet.decrypt(encrypted.encode()).decode()
+            print(f"\n {data[index]['title']} - {data[index]['timestamp']} \n\n {decrypted}")
+        else:
+            print("Invalid selection")
+    except:
+        print("Invalid input")
+
+def main():
+    while True:
+        print("Offline notes locker")
+        print("1. Add notes")
+        print("2. List notes")
+        print("3. View notes")
+        print("4. Search notes")
+        print("5. Exit")
+
+        choice = input("Enter an option: ").strip()
+        match choice:
+            case "1": add_note()
+            case "2": list_notes()
+            case "3": view_note()
+            case "5": break
+            case _: print("Invalid input")
+
+if __name__ == "__main__":
+    main()
