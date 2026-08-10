@@ -86,6 +86,16 @@ def view_note():
     except:
         print("Invalid input")
 
+def search_note():
+    keyword = input("Enter the keyword to search: ").strip().lower()
+    data = load_vault()
+    found = [note for note in data if keyword in note['title'].lower()]
+    if not found:
+        print("No matching notes found!")
+    else:
+        for note in found:
+            print(f"{note['title']} {note['timestamp']}")
+
 def main():
     while True:
         print("Offline notes locker")
@@ -100,6 +110,7 @@ def main():
             case "1": add_note()
             case "2": list_notes()
             case "3": view_note()
+            case "4": search_note()
             case "5": break
             case _: print("Invalid input")
 
