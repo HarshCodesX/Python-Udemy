@@ -44,7 +44,17 @@ def save_to_csv(posts):
         print("Nothing to save")
         return
     with open(CSV_FILE, 'w', newline="", encoding="utf-8") as f:
-        csv.DictWriter(f, fieldnames=["title", "url"])
+        writer = csv.DictWriter(f, fieldnames=["title", "url"])
+        writer.writeheader()
+        writer.writerows(posts)
+    print(f"Saved {len(posts)} posts to {CSV_FILE}")
 
 
-fetch_top_post()
+def main():
+    print("Scraping the hacker new portal...")
+    posts = fetch_top_post()
+    print("Collected all data...")
+    save_to_csv(posts)
+
+if __name__ == "__main__":
+    main()
