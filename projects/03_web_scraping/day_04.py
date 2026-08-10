@@ -20,3 +20,12 @@ Bonus:
 - Handle invalid filename characters
 - Show download progress
 """
+
+import os
+import requests
+from bs4 import BeautifulSoup
+from urllib.parse import urljoin
+import re
+
+BASE_URL = "https://books.toscrape.com/"
+IMAGES_DIR = "images"
