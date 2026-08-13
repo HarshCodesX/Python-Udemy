@@ -7,13 +7,13 @@ app = Flask(__name__)
 init_db()
 
 def generate_short_code(length=6):
-    return ''.join(random.choice(string.ascii_letters + string.digits, k=length))
+    return ''.join(random.choices(string.ascii_letters + string.digits, k=length))
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
         original_url = request.form['url']
-        short_code = generate_short_code(original_url)
+        short_code = generate_short_code()
         insert_url(original_url, short_code)
         return redirect("/")
     all_urls = get_all_urls()
@@ -22,6 +22,8 @@ def index():
 @app.route("/about")
 def about():
     return 'this is about page'
+
+@app.route("/<short_code>")
 
 if __name__ == "__main__":
     app.run(debug=True)
