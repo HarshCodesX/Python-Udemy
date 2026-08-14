@@ -9,7 +9,7 @@ def take_orders():
 def brew_tea():
     for i in range(1, 4):
         print(f"Bewing tea for #{i}")
-        time.sleep(15)
+        time.sleep(3)
 
 # Create threads
 order_thread = threading.Thread(target=take_orders)
