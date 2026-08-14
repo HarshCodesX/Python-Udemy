@@ -24,6 +24,22 @@ def about():
     return 'this is about page'
 
 @app.route("/<short_code>")
+def redirect_url(short_code):
+    print(short_code)
+    url_data = get_url(short_code)
+    if url_data:
+        increment_visit_count(short_code)
+        return redirect(url_data[1])
+    return render_template('404.html'), 404
+
+@app.route('/delete/<short_code>', methods=['POST'])
+def delete_url(short_code):
+    delete_url_by_code(short_code)
+    return redirect('/')
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(
+        debug=True,
+        host='0.0.0.0',
+        port=8000
+        )
