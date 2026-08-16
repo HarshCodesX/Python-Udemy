@@ -1,4 +1,3 @@
-# comment
 import threading
 import time
 
