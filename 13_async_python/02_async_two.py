@@ -3,8 +3,8 @@ import time
 
 async def brew(name):
     print(f"Brewing: {name}")
-    # await asyncio.sleep(2)
-    time.sleep(3)
+    await asyncio.sleep(2)
+    # time.sleep(3)
     print(f"Brewing completed for: {name}")
 
 async def main():
