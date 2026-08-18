@@ -22,11 +22,11 @@ class Empoyee(BaseModel):
 class User(BaseModel):
     email: str = Field(
         ...,
-        regex=r''
+        # regex=r''
     )
     phone: str = Field(
         ...,
-        regex=r''
+        # regex=r''
     )
     age: int = Field(
         ...,
