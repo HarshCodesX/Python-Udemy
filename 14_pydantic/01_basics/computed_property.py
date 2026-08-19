@@ -1,3 +1,4 @@
+# computed_property in pydantic allows you to define properties that are computed based on other fields in the model. These properties are not stored in the model's data but can be accessed like regular attributes.
 from pydantic import BaseModel, computed_field, Field
 
 class Product(BaseModel):
