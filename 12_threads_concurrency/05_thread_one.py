@@ -1,3 +1,4 @@
+# This is a simple example of using threads in Python to perform two tasks concurrently: boiling milk and toasting a bun. The `boil_milk` function simulates the process of boiling milk, while the `toast_bun` function simulates toasting a bun. Each function includes a sleep period to represent the time taken for each task.
 import threading
 import time
 
