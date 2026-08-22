@@ -1,3 +1,4 @@
+# this example shows how to use decorators to add functionality to a function
 from functools import wraps
 
 def my_decorator(func):
