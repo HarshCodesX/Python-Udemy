@@ -1,3 +1,4 @@
+# this example shows how to use threads to take orders and brew tea concurrently
 import threading
 import time
 
