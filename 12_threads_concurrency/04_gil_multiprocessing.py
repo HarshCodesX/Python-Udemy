@@ -1,3 +1,4 @@
+# this example shows how to use multiprocessing to crunch numbers concurrently
 from multiprocessing import Process
 import time
 
