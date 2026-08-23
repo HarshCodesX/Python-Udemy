@@ -1,3 +1,4 @@
+# this example shows how to use a decorator to log the activity of a function. The `log_activity` decorator wraps the `brew_tea` function, printing messages before and after the function call.
 from functools import wraps
 
 def log_activity(func):
